@@ -19,6 +19,7 @@ interface LabelProps {
 const InputEle = styled.input`
     border-width: 0 0 1px 0;
     font-size: 16px;
+    width: 100%;
 
     &:focus {
         outline: 1px solid blue;
@@ -32,6 +33,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
     display: inline-block;
     position: relative;
     margin: 15px;
+    width: 95%;
 
     ${Label} {
         position: absolute;

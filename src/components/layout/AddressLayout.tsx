@@ -9,6 +9,8 @@ interface AddressLayoutProps {
 export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayoutProps) => {
     return (
         <Container>
+            <h3>Address Info</h3>
+            <hr />
             <Row>
                 <Column><Input id="line1" label="Line 1"/></Column>
             </Row>

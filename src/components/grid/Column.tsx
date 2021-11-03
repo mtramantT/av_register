@@ -15,27 +15,27 @@ const ColumnWrapper = styled.div<ColumnProps>`
 `;
 
 const XsmColumn = styled(ColumnWrapper).attrs({ className: 'col-xsm' })`
-    @media (max-width: 600px) {
+    @media only screen and (max-width: 600px) {
         width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
 const SmColumn = styled(ColumnWrapper).attrs({ className: 'col-sm' })`
-    @media (min-width: 768px) {
+    @media only screen and (min-width: 768px) {
         width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
 const MdColumn = styled(ColumnWrapper).attrs({ className: 'col-md' })`
-    @media (min-width: 768px) {
+    @media only screen and (min-width: 768px) {
         width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
 const LgColumn = styled(ColumnWrapper).attrs({ className: 'col-lg' })`
-    @media (min-width: 992px) {
+    @media only screen and (min-width: 992px) {
         width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
 const XlgColumn = styled(ColumnWrapper).attrs({ className: 'col-xlg' })`
-    @media (min-width: 1200px) {
+    @media only screen and (min-width: 1200px) {
         width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;

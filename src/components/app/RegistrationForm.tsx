@@ -1,5 +1,6 @@
 import React from "react";
-import { Container } from "../grid";
+import { Container, Row } from "../grid";
+import * as Layout  from '../layout';
 
 interface RegistrationFormProps {
 
@@ -8,9 +9,15 @@ interface RegistrationFormProps {
 export const RegistrationForm: React.FC<RegistrationFormProps> = (props: RegistrationFormProps) => {
     return (
         <Container>
-            UserInfo
-            Address Info
-            Contact Info
+            <Row>
+                <Layout.UserInfoLayout />
+            </Row>
+            <Row>
+                <Layout.AddressLayout />
+            </Row>
+            <Row>
+                <Layout.ContactLayout />
+            </Row>
         </Container>
     );
 }

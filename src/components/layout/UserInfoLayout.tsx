@@ -9,12 +9,14 @@ interface UserInfoLayoutProps {
 export const UserInfoLayout: React.FC<UserInfoLayoutProps> = (props: UserInfoLayoutProps): JSX.Element => {
     return (
         <Container className="user-info-contaienr">
+            <h3>User Info</h3>
+            <hr />
             <Row>
-                <Column><Input id="firstName" label="First Name" /></Column>
-                <Column><Input id="lastName" label="Last Name" /></Column>
+                <Column colSpan={3}><Input id="firstName" label="First Name" /></Column>
+                <Column colSpan={3}><Input id="lastName" label="Last Name" /></Column>
             </Row>
             <Row>
-                <Column><Input id="npi-number" label="NPI Number" /></Column>
+                <Column colSpan={3}><Input id="npi-number" label="NPI Number" /></Column>
             </Row>
         </Container>
     )
