@@ -1,78 +1,66 @@
-import React from "react";
-import styled from "styled-components";
-import { MediaDevices, ColSpan } from "./types";
+import * as React from 'react';
+import styled from 'styled-components';
+import { ColSpan, MediaDevices } from './types';
 
 interface ColumnProps {
     device?: MediaDevices;
-    colSpan?: number | 'auto';
+    colSpan?: ColSpan;
+    children?: React.ReactNode | React.ReactNode[]
 }
 
-interface BaseColumnProps {
-    colSpan: ColSpan;
-}
-
-// Styled Components
-const BaseColumn = styled.div`
+const ColumnWrapper = styled.div<ColumnProps>`
     float: left;
     padding: 15px;
-    width: 100%;
+    width: 100%; // Mobile first
 `;
-const xsmColumn = styled(BaseColumn).attrs({
-    className: 'col-xsm'
-})<BaseColumnProps>`
-    @media only screen and (min-width: 600px) {
-        width: ${({ colSpan }) => `${getWidth(colSpan)}%`}
+
+const XsmColumn = styled(ColumnWrapper).attrs({ className: 'col-xsm' })`
+    @media (max-width: 600px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
-const smColumn = styled(BaseColumn).attrs({
-    className: 'col-sm'
-})<BaseColumnProps>`
-    @media only screen and (max-width: 600px) {
-        width: ${({ colSpan }) => `${getWidth(colSpan)}%`}
+const SmColumn = styled(ColumnWrapper).attrs({ className: 'col-sm' })`
+    @media (min-width: 768px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
-const mdColumn = styled(BaseColumn).attrs({
-    className: 'col-md'
-})<BaseColumnProps>`
-    @media only screen and (max-width: 600px) {
-        width: ${({ colSpan }) => `${getWidth(colSpan)}%`}
+const MdColumn = styled(ColumnWrapper).attrs({ className: 'col-md' })`
+    @media (min-width: 768px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
-const lgColumn = styled(BaseColumn).attrs({
-    className: 'col-lg'
-})<BaseColumnProps>`
-    @media only screen and (max-width: 600px) {
-        width: ${({ colSpan }) => `${getWidth(colSpan)}%`}
+const LgColumn = styled(ColumnWrapper).attrs({ className: 'col-lg' })`
+    @media (min-width: 992px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
-const xlgColumn = styled(BaseColumn).attrs({
-    className: 'col-xlg'
-})<BaseColumnProps>`
-    @media only screen and (max-width: 600px) {
-        width: ${({ colSpan }) => `${getWidth(colSpan)}%`}
+const XlgColumn = styled(ColumnWrapper).attrs({ className: 'col-xlg' })`
+    @media (min-width: 1200px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
 
-const getWidth = (colSpan: ColSpan): number => {
-    if (colSpan === 'auto') return 100; // auto = 100&
+const getWidth = (colSpan?: ColSpan): number => {
+    if (!colSpan || colSpan === 'auto' || colSpan < 1 || colSpan > 12) return 100 // auto = 100
     if (colSpan % 3 === 0) return (colSpan / 3) * 25; // Modulus 3 rounder
     return 8.333 * colSpan;
-}
+};
 
-export const Column = (props: ColumnProps) => {
+export const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
     switch (props.device) {
         case 'xsm':
-            return xsmColumn;
+            return <XsmColumn colSpan={props.colSpan} {...props}>{props.children}</XsmColumn>;
         case 'sm':
-            return smColumn;
+            return <SmColumn colSpan={props.colSpan} {...props}>{props.children}</SmColumn>;
         case 'md':
-            return mdColumn;
+            return <MdColumn colSpan={props.colSpan} {...props}>{props.children}</MdColumn>;
         case 'lg':
-            return lgColumn;
+            return <LgColumn colSpan={props.colSpan} {...props}>{props.children}</LgColumn>;
         case 'xlg':
-            return xlgColumn;
-        case 'auto':
+            return <XlgColumn colSpan={props.colSpan} {...props}>{props.children}</XlgColumn>;
         default:
-            return mdColumn;
+            return <MdColumn colSpan={props.colSpan} {...props}>{props.children}</MdColumn>;
     }
-}
+};
+
+export default Column;

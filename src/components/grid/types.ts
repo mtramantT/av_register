@@ -15,5 +15,5 @@ export const mediaDevices = {
     xlg: `(min-width: ${sizes.extraLarge}px)`,
 };
 
-export type ColSpan = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
+export type ColSpan = number | 'auto';
 export type MediaDevices = keyof typeof mediaDevices;

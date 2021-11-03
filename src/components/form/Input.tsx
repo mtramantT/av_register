@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-interface InputProps  extends React.HTMLAttributes<HTMLInputElement>, Partial<PartialInputProps> {
+interface InputProps extends React.HTMLAttributes<HTMLInputElement>, Partial<PartialInputProps> {
 }
 interface PartialInputProps {
     label: string;
