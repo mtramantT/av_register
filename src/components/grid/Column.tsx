@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { mediaDevices, MediaDevices } from "./types";
 
 interface ColumnProps {
-    mediaLen?: MediaDevices;
+    device?: MediaDevices;
     colSpan?: number | 'auto';
 }
 
@@ -15,9 +15,9 @@ const getWidth = (colSpan: number | 'auto'): number => {
 }
 
 export const Column = styled.div.attrs((props: ColumnProps) => ({
-    className: `col-${props.mediaLen ? (props.mediaLen === 'auto' ? 'md' : props.mediaLen ) : 'md'}`,
+    className: `col-${props.device ? (props.device === 'auto' ? 'md' : props.device ) : 'md'}`,
     width: props.colSpan ? `${getWidth(props.colSpan)}%` : `${getWidth('auto')}%`,
-    media: props.mediaLen ? mediaDevices[props.mediaLen] : mediaDevices['auto'],
+    media: props.device ? mediaDevices[props.device] : mediaDevices['auto'],
 }))`
     @media ${props => props.media} {
        width: ${props => props.width};
