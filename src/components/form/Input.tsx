@@ -5,7 +5,6 @@ interface InputProps  extends React.HTMLAttributes<HTMLInputElement>, Partial<Pa
 }
 interface PartialInputProps {
     label: string;
-    value: string;
     onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
     onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
