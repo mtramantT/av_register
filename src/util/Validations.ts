@@ -7,9 +7,6 @@ export const isValidEmail = (val: string) => {
     return reg.test(val);
 }
 
-export const someEmpty = (vals: string[]) => {
-    for (let i=0; i<vals.length; i++) {
-        if (!vals || vals[i] === '') return true;
-    }
-    return false;
+export const isEmpty = (val?: string) => {
+    return !(!val || val === '');
 }

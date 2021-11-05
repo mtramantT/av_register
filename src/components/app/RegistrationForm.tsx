@@ -1,64 +1,13 @@
 import React from "react";
-import { someEmpty } from "../../util/Validations";
+import { isEmpty, isValidEmail, isValidPhoneNumber, someEmpty } from "../../util/Validations";
 import { Input } from "../form";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
-import { RegistrationInputAttr } from "../layout/types";
+import { RegistrationFieldAttr } from "../layout/types";
 
 interface RegistrationFormProps {
 
 }
-
-
-const handleClear = () => {
-    
-}
-
-// State Object
-const inputValues = {
-    firstName: {
-        value: '',
-        required: false
-    },
-    lastname: {
-        value: '',
-        required: false
-    },
-    npi: {
-        value: '',
-        required: false
-    },
-    line1: {
-        value: '',
-        required: false
-    },
-    line2: {
-        value: '',
-        required: false
-    },
-    city: {
-        value: '',
-        required: false
-    },
-    state: {
-        value: '',
-        required: false
-    },
-    zip: {
-        value: '',
-        required: false
-    },
-    phone: {
-        value: '',
-        required: false
-    },
-    email: {
-        value: '',
-        required: false
-    },
-}
-
-
 
 export const RegistrationForm: React.FC<RegistrationFormProps> = (props: RegistrationFormProps) => {
     
@@ -100,35 +49,107 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             default:
                 break;
         }
-        
     }
 
+    const setRequired = (): RegistrationFieldAttr => {
+        return {value: '', onChange: handleInputChange, required: true}
+    };
+
+    const handleClear = () => {
+        setFirstName(defaultRegistrationFieldProps);
+        setLastName(defaultRegistrationFieldProps);
+        setNpi(defaultRegistrationFieldProps);
+        setLine1(defaultRegistrationFieldProps);
+        setLine2(defaultRegistrationFieldProps);
+        setCity(defaultRegistrationFieldProps);
+        setState(defaultRegistrationFieldProps);
+        setZip(defaultRegistrationFieldProps);
+        setPhone(defaultRegistrationFieldProps);
+        setEmail(defaultRegistrationFieldProps);
+    }
+    const handleSubmit = () => {
+        const errorMessage = [] as string[];
+        
+        // Empty Validation
+        if(isEmpty(firstName.value)) {
+            errorMessage.push('First Name');
+            setFirstName(setRequired())
+        };
+        if(isEmpty(lastName.value)) {
+            errorMessage.push('Last Name');
+            setLastName(setRequired())
+        };
+        if(isEmpty(npi.value)) {
+            errorMessage.push('NPI');
+            setNpi(setRequired())
+        };
+        if(isEmpty(line1.value)) {
+            errorMessage.push('Address line 1');
+            setLine1(setRequired())
+        };
+        if(isEmpty(line2.value)) {
+            errorMessage.push('Address line 2');
+            setLine2(setRequired());
+        if(isEmpty(city.value)) {
+            errorMessage.push('City');
+            setCity(setRequired())
+        };
+        if(isEmpty(state.value)) {
+            errorMessage.push('State');
+            setState(setRequired())
+        };
+        if(isEmpty(zip.value)) {
+            errorMessage.push('Zip');
+            setZip(setRequired())
+        };
+        if(isEmpty(phone.value)) {
+            errorMessage.push('Phone')
+            setPhone(setRequired())
+        };
+        if(isEmpty(email.value)) {
+            errorMessage.push('Email');
+            setEmail(setRequired())
+        };
+
+        // Phone Validation
+        if(!isValidPhoneNumber(phone.value)) {
+            setPhone(setRequired());
+            errorMessage.push('Please enter a valid phone number')
+        }
+        // Email Validation
+        if(!isValidEmail(email.value)) {
+            setEmail(setRequired());
+            errorMessage.push('Please enter a valid email')
+        }
+    }
+    }
+
+    // Default Objects and Properties
     const defaultRegistrationFieldProps = {
         value: '',
         onChange: handleInputChange,
         required: false
     }
-    // State Management
-    const [firstName, setFirstName] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [lastName, setLastname] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [npi, setNpi] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [line1, setLine1] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [line2, setLine2] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [city, setCity] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [state, setState] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [zip, setZip] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [phone, setPhone] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-    const [email, setEmail] = React.useState<RegistrationInputAttr>(defaultRegistrationFieldProps)
-
-    const handleSubmit = () => {
-    }
-
     const submitButtonProps = {
         onClick: handleSubmit,
     }
     const clearButtonProps = {
         onClick: handleClear,
     }
+
+    
+    // State Management
+    const [firstName, setFirstName] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [lastName, setLastName] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [npi, setNpi] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [line1, setLine1] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [line2, setLine2] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [city, setCity] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [state, setState] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [zip, setZip] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [phone, setPhone] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [email, setEmail] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+
     return (
         <Container>
             <Row>
@@ -143,7 +164,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
                     line1FieldAttr={line1}
                     line2FieldAttr={line2}
                     cityFieldAttr={city}
-                    stateFieldAttr={{onChange: () => {}}}
+                    stateFieldAttr={state}
                     zipfieldAttr={zip}               
                 />
             </Row>

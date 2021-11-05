@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Row, Column } from '../grid'
 import { Input } from '../form';
-import { RegistrationInputAttr } from "./types";
+import { RegistrationFieldAttr } from "./types";
 
 interface UserInfoLayoutProps {
-    firstNameField: RegistrationInputAttr;
-    lastNameField: RegistrationInputAttr;
-    npiField: RegistrationInputAttr;
+    firstNameField: RegistrationFieldAttr;
+    lastNameField: RegistrationFieldAttr;
+    npiField: RegistrationFieldAttr;
 }
 
 export const UserInfoLayout: React.FC<UserInfoLayoutProps> = (props: UserInfoLayoutProps): JSX.Element => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Input } from '../form';
 import { Column, Container, Row } from '../grid';
-import { RegistrationInputAttr, RegistrationSelectAttr } from './types';
+import { RegistrationFieldAttr } from './types';
 
 interface AddressLayoutProps {
-    line1FieldAttr: RegistrationInputAttr;
-    line2FieldAttr: RegistrationInputAttr;
-    cityFieldAttr: RegistrationInputAttr;
-    stateFieldAttr: RegistrationSelectAttr;
-    zipfieldAttr: RegistrationInputAttr;
+    line1FieldAttr: RegistrationFieldAttr;
+    line2FieldAttr: RegistrationFieldAttr;
+    cityFieldAttr: RegistrationFieldAttr;
+    stateFieldAttr: RegistrationFieldAttr;
+    zipfieldAttr: RegistrationFieldAttr;
 }
 
 export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayoutProps) => {
