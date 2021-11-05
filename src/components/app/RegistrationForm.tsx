@@ -8,6 +8,13 @@ interface RegistrationFormProps {
 
 }
 
+const ContainerStyles: React.CSSProperties = {
+    border: '1px solid black',
+    marginLeft: '20%',
+    marginRight: '20%',
+    padding: '40px',
+}
+
 export const RegistrationForm: React.FC<RegistrationFormProps> = (props: RegistrationFormProps) => {
     
     // Handle Methods required for layouts
@@ -160,7 +167,8 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     const [email, setEmail] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
 
     return (
-        <Container>
+        <Container style={ContainerStyles}>
+            <Row style={{textAlign: 'center'}}><h2>Registration Form</h2></Row>
             <Row className="row-container" id="user-info">
                 <Layout.UserInfoLayout 
                     firstNameField={firstName}

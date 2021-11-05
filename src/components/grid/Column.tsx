@@ -6,7 +6,7 @@ interface ColumnProps {
     device?: MediaDevices;
     colSpan?: ColSpan;
     children?: React.ReactNode | React.ReactNode[]
-    styles?: React.CSSProperties;
+    style?: React.CSSProperties;
 }
 
 const ColumnWrapper = styled.div<ColumnProps>`

@@ -16,25 +16,28 @@ export const UserInfoLayout: React.FC<UserInfoLayoutProps> = (props: UserInfoLay
             <h3>User Info</h3>
             <hr />
             <Row>
-                <Column colSpan={3}>
+                <Column colSpan={5}>
                     <Input 
                         id="firstName"
                          label="First Name" 
-                         onChange={firstNameField.onChange} />
+                         onChange={firstNameField.onChange}
+                         value={firstNameField.value}/>
                 </Column>
-                <Column colSpan={3}>
+                <Column colSpan={5}>
                     <Input 
                         id="lastName" 
                         label="Last Name" 
-                        onChange={lastNameField.onChange}/>
+                        onChange={lastNameField.onChange}
+                        value={lastNameField.value}/>
                 </Column>
             </Row>
             <Row>
-                <Column colSpan={3}>
+                <Column colSpan={4}>
                     <Input 
                         id="npi-number" 
                         label="NPI Number" 
-                        onChange={npiField.onChange}/>
+                        onChange={npiField.onChange}
+                        value={npiField.value}/>
                 </Column>
             </Row>
         </>

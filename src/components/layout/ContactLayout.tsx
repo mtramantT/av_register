@@ -8,22 +8,29 @@ interface ContactLayoutProps {
     emailFieldAttr: RegistrationFieldAttr;
 }
 
+const ColSpan = 10;
+
 export const ContactLayout: React.FC<ContactLayoutProps> = (props: ContactLayoutProps) => {
+    const {phoneFieldAttr, emailFieldAttr} = props;
     return (
         <>
             <h3>Contact Info</h3>
             <hr />
             <Row>
-                <Column>
+                <Column colSpan={ColSpan}>
                     <Input 
                         id="phone" 
-                        label="Phone Number"/>
+                        label="Phone Number"
+                        onChange={phoneFieldAttr.onChange}
+                        value={phoneFieldAttr.value}/>
                 </Column>
-                <Column>
+                <Column colSpan={ColSpan}>
                     <Input 
                         id="emial" 
-                        label="Email Address"/
-                ></Column>
+                        label="Email Address"
+                        onChange={emailFieldAttr.onChange}
+                        value={emailFieldAttr.value}/>
+                </Column>
             </Row>
         </>
     );

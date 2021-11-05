@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 interface InputProps extends React.HTMLAttributes<HTMLInputElement>, Partial<PartialInputProps> {
+    value: string;
+    style?: React.CSSProperties
 }
 interface PartialInputProps {
     label: string;
@@ -45,18 +47,12 @@ const InputWrapper = styled.div<InputWrapperProps>`
 
 export const Input: React.FC<InputProps> = (props: InputProps): JSX.Element => {
     const [focus, setFocus] = React.useState<boolean>(false);
-    const [value, setValue] = React.useState<string>('');
     const [populated, setPopulated] = React.useState<boolean>(false)
 
     React.useEffect(() => {
-        setPopulated(focus || value.length > 0)
+        setPopulated(focus || props.value.length > 0)
     }, [populated, focus])
 
-    const onChange = React.useCallback(
-        (event: React.ChangeEvent<HTMLInputElement>) => {
-            setValue(event.target.value);
-            props.onChange && props.onChange(event);
-    }, [value])
     const onFocus = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
         setFocus(true);
         props.onFocus && props.onFocus(event);
@@ -73,10 +69,10 @@ export const Input: React.FC<InputProps> = (props: InputProps): JSX.Element => {
             <InputEle
                 id={props.id}
                 name={props.id}
-                onChange={onChange}
+                onChange={props.onChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
-                {...props}
+                value={props.value}
             />
         </InputWrapper>
     )

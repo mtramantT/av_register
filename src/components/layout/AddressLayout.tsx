@@ -11,6 +11,8 @@ interface AddressLayoutProps {
     zipfieldAttr: RegistrationFieldAttr;
 }
 
+const colSpan = 10
+
 export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayoutProps) => {
     const { line1FieldAttr, line2FieldAttr, cityFieldAttr, stateFieldAttr, zipfieldAttr } = props;
     return (
@@ -18,19 +20,21 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
             <h3>Address Info</h3>
             <hr />
             <Row>
-                <Column>
+                <Column colSpan={colSpan}>
                     <Input 
                         id="line1" 
                         label="Line 1" 
-                        onChange={line1FieldAttr.onChange}/>
+                        onChange={line1FieldAttr.onChange}
+                        value={line1FieldAttr.value}/>
                 </Column>
             </Row>
             <Row>
-                <Column>
+                <Column colSpan={colSpan}>
                     <Input 
                         id="line2" 
                         label="Line 2" 
-                        onChange={line2FieldAttr.onChange}/>
+                        onChange={line2FieldAttr.onChange}
+                        value={line2FieldAttr.value}/>
                 </Column>
             </Row>
             <Row>

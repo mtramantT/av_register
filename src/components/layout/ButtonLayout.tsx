@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../form";
-import { Column, Container, Row } from "../grid";
+import { Column, Row } from "../grid";
 import { ButtonAttr } from "./types";
 
 interface ButtonLayoutProps {
@@ -8,21 +8,27 @@ interface ButtonLayoutProps {
     clearButtonProps: ButtonAttr;
 }
 
+const ColStyle: React.CSSProperties = {
+    padding: '5px',
+}
+
 export const ButtonLayout: React.FC<ButtonLayoutProps> = (props: ButtonLayoutProps) => {
     return (
         <>
             <Row>
-                <Column colSpan={1}>
-                    <Button 
+                <Column colSpan={1} style={ColStyle}>
+                    <Button
+                        id="submit-button"
                         onClick={props.submitButtonProps.onClick}>
                         Submit
                     </Button>
                 </Column>
-                <Column colSpan={1}>
-                    <Button 
+                <Column colSpan={1} style={ColStyle}>
+                    <Button
+                        id="clear-button"
                         onClick={props.submitButtonProps.onClick}
                         buttonColor="#ec7575">
-                            Submit
+                            Clear
                         </Button>
                 </Column>
             </Row>
