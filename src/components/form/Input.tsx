@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 interface InputProps extends React.HTMLAttributes<HTMLInputElement>, Partial<PartialInputProps> {
     value: string;
-    style?: React.CSSProperties
 }
 interface PartialInputProps {
+    style?: React.CSSProperties
+    maxLength: number;
     label: string;
     onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
     onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -73,6 +74,7 @@ export const Input: React.FC<InputProps> = (props: InputProps): JSX.Element => {
                 onFocus={onFocus}
                 onBlur={onBlur}
                 value={props.value}
+                maxLength={props.maxLength}
             />
         </InputWrapper>
     )

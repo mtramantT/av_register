@@ -2,32 +2,36 @@ import React from "react"
 import styled from "styled-components"
 import { states, StatesKey } from './types'
 
-type States = typeof states;
 interface StateSelectorProps {
     id: string;
+    value: string;
     identifier?: StatesKey;
     label?: string;
+    onSelect: () => void;
 }
-
 
 const SelectWrapper = styled.div``;
 const SelectLabel = styled.label``;
 const SelectBox = styled.select``;
 const Option = styled.option``;
 
-const mapOptions = (states: States, identifier: StatesKey): JSX.Element[] => {
-    return states.map((state) => <Option>{state[identifier]}</Option>)
-}
-
 export const StateSelector: React.FC<StateSelectorProps> = (props: StateSelectorProps): JSX.Element => {
     const [identifier, setIdentifier] = React.useState<StatesKey>(props.identifier || 'abr')
-
-    const stateList = states;
 
     React.useEffect(() => {
         const identifier = props.identifier || 'abr';
         setIdentifier(identifier);
     }, [props.identifier])
+
+    const mapOptions = React.useMemo(() => {
+        const statesList = states;
+        const ide = identifier;
+        return statesList.map((state) => {
+            return props.value === state[ide]
+                ? <Option selected={true}>{state[ide]}</Option>
+                :<Option>{state[ide]}</Option>
+        })
+    }, [props.value, identifier])
 
     return (
         <SelectWrapper>
@@ -35,8 +39,9 @@ export const StateSelector: React.FC<StateSelectorProps> = (props: StateSelector
             <SelectBox
                 id={props.id}
                 name={props.id}
+                onSelect={props.onSelect}
             >
-                {mapOptions(stateList, identifier)}
+                {mapOptions}
             </SelectBox>
         </SelectWrapper>
     )

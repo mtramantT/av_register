@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Hr } from '../form';
+import { Input, Hr, StateSelector } from '../form';
 import { Column, Row } from '../grid';
 import { RegistrationFieldAttr } from './types';
 
@@ -15,6 +15,9 @@ const colSpan = 10
 
 export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayoutProps) => {
     const { line1FieldAttr, line2FieldAttr, cityFieldAttr, stateFieldAttr, zipfieldAttr } = props;
+    const handleSelectChange = () => {
+        stateFieldAttr.onChange({} as React.ChangeEvent<HTMLInputElement>);
+    }
     return (
         <>
             <h3>Address Info</h3>
@@ -46,16 +49,18 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
                         value={cityFieldAttr.value}/>
                 </Column>
                 <Column colSpan={1}>
-                    <Input
+                    <StateSelector
                         id="state"
                         label="State"
-                        onChange={stateFieldAttr.onChange}
-                        value={stateFieldAttr.value}/>
+                        value={stateFieldAttr.value}
+                        onSelect={handleSelectChange}
+                        />
                 </Column>
                 <Column colSpan={3}>
                     <Input
                         id="zip"
                         label="Zip"
+                        maxLength={5}
                         onChange={zipfieldAttr.onChange}
                         value={zipfieldAttr.value}/>
                 </Column>
