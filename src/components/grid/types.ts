@@ -13,4 +13,5 @@ export const mediaDevices = {
     xlg: `only screen and (min-width: ${sizes.extraLarge}px)`,
 };
 
-export type MediaDevices = keyof typeof mediaDevices | 'auto';
+export type ColSpan = number | 'auto';
+export type MediaDevices = keyof typeof mediaDevices;

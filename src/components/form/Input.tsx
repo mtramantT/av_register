@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-interface InputProps  extends React.HTMLAttributes<HTMLInputElement>, Partial<PartialInputProps> {
+interface InputProps extends React.HTMLAttributes<HTMLInputElement>, Partial<PartialInputProps> {
 }
 interface PartialInputProps {
     label: string;
@@ -33,6 +33,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
     display: inline-block;
     position: relative;
     margin: 15px;
+    width: 95%;
 
     ${Label} {
         position: absolute;

@@ -1,35 +1,66 @@
-import React from "react";
-import styled from "styled-components";
-import { mediaDevices, MediaDevices } from "./types";
+import * as React from 'react';
+import styled from 'styled-components';
+import { ColSpan, MediaDevices } from './types';
 
 interface ColumnProps {
     device?: MediaDevices;
+    colSpan?: ColSpan;
+    children?: React.ReactNode | React.ReactNode[]
 }
 
-const xsmColumn = styled.div.attrs({ className: 'col-xsm'})`
+const ColumnWrapper = styled.div<ColumnProps>`
+    float: left;
+    padding: 15px;
+    width: 100%; // Mobile first
+`;
+
+const XsmColumn = styled(ColumnWrapper).attrs({ className: 'col-xsm' })`
     @media only screen and (max-width: 600px) {
-        width: 100%;
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
     }
 `;
-const smColumn = styled.div.attrs({ className: 'col-sm'})``;
-const mdColumn = styled.div.attrs({ className: 'col-md'})``;
-const lgColumn = styled.div.attrs({ className: 'col-lg'})``;
-const xlgColumn = styled.div.attrs({ className: 'col-xlg'})``;
+const SmColumn = styled(ColumnWrapper).attrs({ className: 'col-sm' })`
+    @media only screen and (min-width: 768px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
+    }
+`;
+const MdColumn = styled(ColumnWrapper).attrs({ className: 'col-md' })`
+    @media only screen and (min-width: 768px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
+    }
+`;
+const LgColumn = styled(ColumnWrapper).attrs({ className: 'col-lg' })`
+    @media only screen and (min-width: 992px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
+    }
+`;
+const XlgColumn = styled(ColumnWrapper).attrs({ className: 'col-xlg' })`
+    @media only screen and (min-width: 1200px) {
+        width: ${(props) => `${getWidth(props.colSpan)}%`};
+    }
+`;
 
-export const Column = (props: ColumnProps) => {
-    switch(props.device) {
+const getWidth = (colSpan?: ColSpan): number => {
+    if (!colSpan || colSpan === 'auto' || colSpan < 1 || colSpan > 12) return 100 // auto = 100
+    if (colSpan % 3 === 0) return (colSpan / 3) * 25; // Modulus 3 rounder
+    return 8.333 * colSpan;
+};
+
+export const Column: React.FC<ColumnProps> = (props: ColumnProps) => {
+    switch (props.device) {
         case 'xsm':
-            return xsmColumn;
+            return <XsmColumn colSpan={props.colSpan} {...props}>{props.children}</XsmColumn>;
         case 'sm':
-            return smColumn;
+            return <SmColumn colSpan={props.colSpan} {...props}>{props.children}</SmColumn>;
         case 'md':
-            return mdColumn;
+            return <MdColumn colSpan={props.colSpan} {...props}>{props.children}</MdColumn>;
         case 'lg':
-            return lgColumn;
+            return <LgColumn colSpan={props.colSpan} {...props}>{props.children}</LgColumn>;
         case 'xlg':
-            return xlgColumn;
-        case 'auto':
+            return <XlgColumn colSpan={props.colSpan} {...props}>{props.children}</XlgColumn>;
         default:
-            return mdColumn;
-    }    
-}
+            return <MdColumn colSpan={props.colSpan} {...props}>{props.children}</MdColumn>;
+    }
+};
+
+export default Column;
