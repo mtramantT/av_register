@@ -7,4 +7,7 @@ export type RegistrationFieldAttr = {
     value: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
+    name: string;
 }
+
+export type PageStatus = '' | 'red' | 'green'
