@@ -26,7 +26,7 @@ export const ButtonLayout: React.FC<ButtonLayoutProps> = (props: ButtonLayoutPro
                 <Column colSpan={1} style={ColStyle}>
                     <Button
                         id="clear-button"
-                        onClick={props.submitButtonProps.onClick}
+                        onClick={props.clearButtonProps.onClick}
                         buttonColor="#ec7575">
                             Clear
                         </Button>
