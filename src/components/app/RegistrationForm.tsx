@@ -19,31 +19,31 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
                 setFirstName({ value: value, onChange: firstName.onChange, required: firstName.required });
                 break;
             case 'lastName':
-                setFirstName({ value: value, onChange: lastName.onChange, required: lastName.required });
+                setLastName({ value: value, onChange: lastName.onChange, required: lastName.required });
                 break;
-            case 'npi':
-                setFirstName({ value: value, onChange: npi.onChange, required: npi.required });
+            case 'npi-number':
+                setNpi({ value: value, onChange: npi.onChange, required: npi.required });
                 break;
             case 'line1':
-                setFirstName({ value: value, onChange: line1.onChange, required: line1.required });
+                setLine1({ value: value, onChange: line1.onChange, required: line1.required });
                 break;
             case 'line2':
-                setFirstName({ value: value, onChange: line2.onChange, required: line2.required });
+                setLine2({ value: value, onChange: line2.onChange, required: line2.required });
                 break;
             case 'city':
-                setFirstName({ value: value, onChange: city.onChange, required: city.required });
+                setCity({ value: value, onChange: city.onChange, required: city.required });
                 break;
             case 'state':
-                setState({ value: value, onChange: city.onChange, required: city.required });
+                set_State({ value: value, onChange: city.onChange, required: city.required });
                 break;
             case 'zip':
-                setFirstName({ value: value, onChange: zip.onChange, required: zip.required });
+                setZip({ value: value, onChange: zip.onChange, required: zip.required });
                 break;
             case 'phone':
-                setFirstName({ value: value, onChange: phone.onChange, required: phone.required });
+                setPhone({ value: value, onChange: phone.onChange, required: phone.required });
                 break;
             case 'email':
-                setFirstName({ value: value, onChange: email.onChange, required: email.required });
+                setEmail({ value: value, onChange: email.onChange, required: email.required });
                 break;
             default:
                 break;
@@ -61,7 +61,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         setLine1(defaultRegistrationFieldProps);
         setLine2(defaultRegistrationFieldProps);
         setCity(defaultRegistrationFieldProps);
-        setState(defaultRegistrationFieldProps);
+        set_State(defaultRegistrationFieldProps);
         setZip(defaultRegistrationFieldProps);
         setPhone(defaultRegistrationFieldProps);
         setEmail(defaultRegistrationFieldProps);
@@ -94,9 +94,9 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             errorMessage.push('City');
             setCity(setRequired());
         }
-        if(isEmpty(state.value)) {
+        if(isEmpty(_state.value)) {
             errorMessage.push('State');
-            setState(setRequired());
+            set_State(setRequired());
         }
         if(isEmpty(zip.value)) {
             errorMessage.push('Zip');
@@ -124,9 +124,9 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
 
         // Set error boundry here (a bannar)
         let message = '';
-        const fields = [firstName, lastName, npi, line1, line2, city, state, zip, phone, email]
+        const fields = [firstName, lastName, npi, line1, line2, city, _state, zip, phone, email]
         if(allValid(fields)) {
-            message = 'The form was submitted!; 
+            message = 'The form was submitted!'; 
         }else {
             message = 'Please resolve all issues:'
             errorMessage.forEach((msg) => message.concat(' ' + msg))
@@ -154,7 +154,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     const [line1, setLine1] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
     const [line2, setLine2] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
     const [city, setCity] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
-    const [state, setState] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
+    const [_state, set_State] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
     const [zip, setZip] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
     const [phone, setPhone] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
     const [email, setEmail] = React.useState<RegistrationFieldAttr>(defaultRegistrationFieldProps)
@@ -173,7 +173,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
                     line1FieldAttr={line1}
                     line2FieldAttr={line2}
                     cityFieldAttr={city}
-                    stateFieldAttr={state}
+                    stateFieldAttr={_state}
                     zipfieldAttr={zip}               
                 />
             </Row>

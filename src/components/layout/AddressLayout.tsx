@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from '../form';
-import { Column, Container, Row } from '../grid';
+import { Column, Row } from '../grid';
 import { RegistrationFieldAttr } from './types';
 
 interface AddressLayoutProps {
@@ -14,7 +14,7 @@ interface AddressLayoutProps {
 export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayoutProps) => {
     const { line1FieldAttr, line2FieldAttr, cityFieldAttr, stateFieldAttr, zipfieldAttr } = props;
     return (
-        <Container>
+        <>
             <h3>Address Info</h3>
             <hr />
             <Row>
@@ -28,6 +28,6 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
                 <Column></Column>
                 <Column></Column>
             </Row>
-        </Container>
+        </>
     )
 }

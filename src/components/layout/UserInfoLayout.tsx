@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Column } from '../grid'
+import { Row, Column } from '../grid'
 import { Input } from '../form';
 import { RegistrationFieldAttr } from "./types";
 
@@ -12,7 +12,7 @@ interface UserInfoLayoutProps {
 export const UserInfoLayout: React.FC<UserInfoLayoutProps> = (props: UserInfoLayoutProps): JSX.Element => {
     const { firstNameField, lastNameField, npiField } = props;
     return (
-        <Container className="user-info-contaienr">
+        <>
             <h3>User Info</h3>
             <hr />
             <Row>
@@ -22,6 +22,6 @@ export const UserInfoLayout: React.FC<UserInfoLayoutProps> = (props: UserInfoLay
             <Row>
                 <Column colSpan={3}><Input id="npi-number" label="NPI Number" onChange={npiField.onChange}/></Column>
             </Row>
-        </Container>
+        </>
     )
 }
