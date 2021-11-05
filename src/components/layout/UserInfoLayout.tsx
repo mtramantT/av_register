@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Column } from '../grid'
-import { Input } from '../form';
+import { Input, Hr } from '../form';
 import { RegistrationFieldAttr } from "./types";
 
 interface UserInfoLayoutProps {
@@ -14,7 +14,7 @@ export const UserInfoLayout: React.FC<UserInfoLayoutProps> = (props: UserInfoLay
     return (
         <>
             <h3>User Info</h3>
-            <hr />
+            <Hr type="dashed" color="#ddd"/>
             <Row>
                 <Column colSpan={5}>
                     <Input 

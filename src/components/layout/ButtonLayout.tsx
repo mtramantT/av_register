@@ -9,29 +9,28 @@ interface ButtonLayoutProps {
 }
 
 const ColStyle: React.CSSProperties = {
+    display: "inline-block",
     padding: '5px',
 }
 
 export const ButtonLayout: React.FC<ButtonLayoutProps> = (props: ButtonLayoutProps) => {
     return (
         <>
-            <Row>
-                <Column colSpan={1} style={ColStyle}>
-                    <Button
-                        id="submit-button"
-                        onClick={props.submitButtonProps.onClick}>
-                        Submit
+            <div style={ColStyle}>
+                <Button
+                    id="submit-button"
+                    onClick={props.submitButtonProps.onClick}>
+                    Submit
+                </Button>
+            </div>
+            <div style={ColStyle}>
+                <Button
+                    id="clear-button"
+                    onClick={props.clearButtonProps.onClick}
+                    buttonColor="#ec7575">
+                        Clear
                     </Button>
-                </Column>
-                <Column colSpan={1} style={ColStyle}>
-                    <Button
-                        id="clear-button"
-                        onClick={props.clearButtonProps.onClick}
-                        buttonColor="#ec7575">
-                            Clear
-                        </Button>
-                </Column>
-            </Row>
+            </div>
         </>
     )
 }

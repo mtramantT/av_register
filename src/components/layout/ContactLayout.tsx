@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../form';
+import { Input, Hr } from '../form';
 import { Column, Row } from '../grid';
 import { RegistrationFieldAttr } from './types';
 
@@ -15,7 +15,7 @@ export const ContactLayout: React.FC<ContactLayoutProps> = (props: ContactLayout
     return (
         <>
             <h3>Contact Info</h3>
-            <hr />
+            <Hr type="dashed" color="#ddd"/>
             <Row>
                 <Column colSpan={ColSpan}>
                     <Input 

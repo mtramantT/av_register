@@ -13,6 +13,7 @@ interface ButtonStyleProps {
 }
 
 const ButtonEle = styled.button<Partial<ButtonStyleProps>>`
+    font-size: large;
     ${({ buttonColor }) => 
         buttonColor 
             ? css` background-color: ${buttonColor};`

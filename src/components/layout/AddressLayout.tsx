@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../form';
+import { Input, Hr } from '../form';
 import { Column, Row } from '../grid';
 import { RegistrationFieldAttr } from './types';
 
@@ -18,7 +18,7 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
     return (
         <>
             <h3>Address Info</h3>
-            <hr />
+            <Hr type="dashed" color="#ddd"/>
             <Row>
                 <Column colSpan={colSpan}>
                     <Input 
