@@ -1,5 +1,6 @@
 import React from "react";
-import { isEmpty, isValidEmail, isValidNpi, isValidPhoneNumber } from "../../util/Validations";
+import { getConcatinatedMessage, isEmpty } from '../../util';
+import { Bannar } from "../form";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
 import { RegistrationFieldAttr } from "../layout/types";
@@ -58,12 +59,13 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     }
 
     const setRequired = (field: RegistrationFieldAttr): RegistrationFieldAttr => {
-        return { ...field, required: false }
+        return { ...field, required: true }
     };
 
     const handleClear = () => {
         // Reset Status and Message
         setPageStatus('');
+        setInitialMessage('');
         setMessage('');
         // Reset all fields
         setFirstName(defaultRegistrationFieldProps);
@@ -78,46 +80,53 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         setEmail(defaultRegistrationFieldProps);
     }
     const handleSubmit = () => {
-        // Empty Validation
-        if(isEmpty(firstName.value)) setFirstName(setRequired(firstName));
-        if(isEmpty(lastName.value)) setLastName(setRequired(lastName));
-        if(isEmpty(npi.value)) setNpi(setRequired(npi));
-        if(isEmpty(line1.value)) setLine1(setRequired(line1));
-        if(isEmpty(line2.value)) setLine2(setRequired(line2));
-        if(isEmpty(city.value)) setCity(setRequired(city));
-        if(isEmpty(_state.value)) set_State(setRequired(_state));
-        if(isEmpty(zip.value)) setZip(setRequired(zip));
-        if(isEmpty(phone.value)) setPhone(setRequired(phone));
-        if(isEmpty(email.value)) setEmail(setRequired(email));
+        // Clear any previous submit attempts
+        setInitialMessage('');
+        setMessage('');
+        setPageStatus('');
 
-        const fields = [firstName, lastName, npi, line1, line2, city, _state, zip, phone, email]
-        if(fields.some((field) => field.required)) {
-            setMessage('The following fields are required');
-            setPageStatus('red');
-            fields.forEach((field) => {
-                setMessage(message.concat(field.required ? field.name : ''));
-            })
-        } else if (!isValidPhoneNumber(phone.value)) {
-            setMessage("Please enter a valid phone number!");
-            setPageStatus('red');
+        // Empty validations
+        const emptyList = [] as string[];
+        if(isEmpty(firstName.value)) {
+            emptyList.push(firstName.name);
+            setFirstName(setRequired(firstName))
+        };
+        if(isEmpty(lastName.value)) {
+            emptyList.push(lastName.name)
+            setLastName(setRequired(lastName))};
+        if(isEmpty(npi.value)) {
+            emptyList.push(npi.name)
+            setNpi(setRequired(npi))};
+        if(isEmpty(line1.value)) {
+            emptyList.push(line1.name)
+            setLine1(setRequired(line1))};
+        if(isEmpty(line2.value)) {
+            emptyList.push(line2.name)
+            setLine2(setRequired(line2))};
+        if(isEmpty(city.value)) {
+            emptyList.push(city.name)
+            setCity(setRequired(city))};
+        if(isEmpty(_state.value)) {
+            emptyList.push(_state.name)
+            set_State(setRequired(_state))};
+        if(isEmpty(zip.value)) {
+            emptyList.push(zip.name)
+            setZip(setRequired(zip))};
+        if(isEmpty(phone.value)) {
+            emptyList.push(phone.name)
+            setPhone(setRequired(phone))};
+        if(isEmpty(email.value)) {
+            emptyList.push(email.name)
+            setEmail(setRequired(email))};
         
-        // NPI Validation
-        }else if (!isValidNpi(npi.value)) {
-            setMessage("Please enter a valid NPI number!");
-            setPageStatus("red");
-        // Phone Validation
-        }else if (!isValidPhoneNumber(phone.value)) {
-            setMessage("Please enter a valid phone number!");
-            setPageStatus('red');
-        // Email Validation
-        } else if (!isValidEmail(email.value)) {
-            setMessage("Please enter a valid email address!");
-            setPageStatus('red');
+        if (emptyList.length > 0) {
+            const initialMessage = "The following fields are required:"
+            const newMessage = getConcatinatedMessage(emptyList);
+            setInitialMessage(initialMessage);
+            setMessage(newMessage);
+            setPageStatus('red')
         }
 
-        // Validation passed!
-        setMessage("SUCCESS!!");
-        setPageStatus('green');
     }
 
     // Default Objects and Properties
@@ -148,10 +157,12 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     const [email, setEmail] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "Email", })
     const [message, setMessage] = React.useState<string>('');
     const [pageStatus, setPageStatus] = React.useState<string>('');
+    const [initialMessage, setInitialMessage] = React.useState<string>('');
 
     return (
         <Container style={ContainerStyles}>
             <Row style={{textAlign: 'center'}}><h2>Registration Form</h2></Row>
+            <Bannar text={message} backgroundColor={pageStatus} initialText={initialMessage}/>
             <Row className="row-container" id="user-info">
                 <Layout.UserInfoLayout 
                     firstNameField={firstName}

@@ -26,7 +26,7 @@ export const ContactLayout: React.FC<ContactLayoutProps> = (props: ContactLayout
                 </Column>
                 <Column colSpan={ColSpan}>
                     <Input 
-                        id="emial" 
+                        id="email" 
                         label="Email Address"
                         onChange={emailFieldAttr.onChange}
                         value={emailFieldAttr.value}/>

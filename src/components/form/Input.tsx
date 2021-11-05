@@ -51,7 +51,7 @@ export const Input: React.FC<InputProps> = (props: InputProps): JSX.Element => {
 
     React.useEffect(() => {
         setPopulated(focus || props.value.length > 0)
-    }, [populated, focus])
+    }, [props.value, populated, focus])
 
     const onFocus = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {
         setFocus(true);
