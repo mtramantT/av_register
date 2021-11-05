@@ -1,5 +1,5 @@
 import React from "react";
-import { allValid, isEmpty, isValidEmail, isValidNpi, isValidPhoneNumber } from "../../util/Validations";
+import { isEmpty, isValidEmail, isValidNpi, isValidPhoneNumber } from "../../util/Validations";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
 import { RegistrationFieldAttr } from "../layout/types";
@@ -62,6 +62,10 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     };
 
     const handleClear = () => {
+        // Reset Status and Message
+        setPageStatus('');
+        setMessage('');
+        // Reset all fields
         setFirstName(defaultRegistrationFieldProps);
         setLastName(defaultRegistrationFieldProps);
         setNpi(defaultRegistrationFieldProps);
