@@ -18,10 +18,20 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
             <h3>Address Info</h3>
             <hr />
             <Row>
-                <Column><Input id="line1" label="Line 1" onChange={line1FieldAttr.onChange}/></Column>
+                <Column>
+                    <Input 
+                        id="line1" 
+                        label="Line 1" 
+                        onChange={line1FieldAttr.onChange}/>
+                </Column>
             </Row>
             <Row>
-                <Column><Input id="line2" label="Line 2" onChange={line2FieldAttr.onChange}/></Column>
+                <Column>
+                    <Input 
+                        id="line2" 
+                        label="Line 2" 
+                        onChange={line2FieldAttr.onChange}/>
+                </Column>
             </Row>
             <Row>
                 <Column></Column>

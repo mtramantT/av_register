@@ -14,8 +14,16 @@ export const ContactLayout: React.FC<ContactLayoutProps> = (props: ContactLayout
             <h3>Contact Info</h3>
             <hr />
             <Row>
-                <Column><Input id="phone" label="Phone Number"/></Column>
-                <Column><Input id="emial" label="Email Address"/></Column>
+                <Column>
+                    <Input 
+                        id="phone" 
+                        label="Phone Number"/>
+                </Column>
+                <Column>
+                    <Input 
+                        id="emial" 
+                        label="Email Address"/
+                ></Column>
             </Row>
         </>
     );
