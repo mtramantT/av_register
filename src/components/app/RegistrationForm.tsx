@@ -161,14 +161,14 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
 
     return (
         <Container>
-            <Row>
+            <Row className="row-container" id="user-info">
                 <Layout.UserInfoLayout 
                     firstNameField={firstName}
                     lastNameField={lastName}
                     npiField={npi}
                 />
             </Row>
-            <Row>
+            <Row className="row-container" id="user-address">
                 <Layout.AddressLayout 
                     line1FieldAttr={line1}
                     line2FieldAttr={line2}
@@ -177,7 +177,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
                     zipfieldAttr={zip}               
                 />
             </Row>
-            <Row>
+            <Row className="row-container" id="user-contact-info">
                 <Layout.ContactLayout 
                     phoneFieldAttr={phone}
                     emailFieldAttr={email}
