@@ -1,5 +1,5 @@
 import React from "react";
-import { allValid, isEmpty, isValidEmail, isValidPhoneNumber } from "../../util/Validations";
+import { allValid, isEmpty, isValidEmail, isValidNpi, isValidPhoneNumber } from "../../util/Validations";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
 import { RegistrationFieldAttr } from "../layout/types";
@@ -97,10 +97,15 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             setMessage("Please enter a valid phone number!");
             setPageStatus('red');
         
+        // NPI Validation
+        }else if (!isValidNpi(npi.value)) {
+            setMessage("Please enter a valid NPI number!");
+            setPageStatus("red");
         // Phone Validation
-        } else if (!isValidPhoneNumber(phone.value)) {
+        }else if (!isValidPhoneNumber(phone.value)) {
             setMessage("Please enter a valid phone number!");
             setPageStatus('red');
+        // Email Validation
         } else if (!isValidEmail(email.value)) {
             setMessage("Please enter a valid email address!");
             setPageStatus('red');

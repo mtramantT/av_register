@@ -9,9 +9,15 @@ export const isValidEmail = (val: string) => {
     return reg.test(val);
 }
 
+export const isValidNpi = (val: string) => {
+    const reg = new RegExp('^\d{10}$');
+    return reg.test(val);
+}
+
 export const isEmpty = (val?: string) => {
     return !val || val === '';
 }
+
 
 export const allValid = (fields: RegistrationFieldAttr[]) => {
     const requiredFields = fields.filter((field) => field.required)
