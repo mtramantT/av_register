@@ -183,7 +183,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
                     emailFieldAttr={email}
                 />
             </Row>
-            <Row>
+            <Row className="row-container" id="reg-button-group">
                 <Layout.ButtonLayout
                     submitButtonProps={submitButtonProps}
                     clearButtonProps={clearButtonProps}

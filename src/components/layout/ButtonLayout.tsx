@@ -10,10 +10,15 @@ interface ButtonLayoutProps {
 
 export const ButtonLayout: React.FC<ButtonLayoutProps> = (props: ButtonLayoutProps) => {
     return (
-        <Container>
+        <>
             <Row>
-                <Column><Button onClick={props.submitButtonProps.onClick}>Submit</Button></Column>
-                <Column>
+                <Column colSpan={1}>
+                    <Button 
+                        onClick={props.submitButtonProps.onClick}>
+                        Submit
+                    </Button>
+                </Column>
+                <Column colSpan={1}>
                     <Button 
                         onClick={props.submitButtonProps.onClick}
                         buttonColor="#ec7575">
@@ -21,6 +26,6 @@ export const ButtonLayout: React.FC<ButtonLayoutProps> = (props: ButtonLayoutPro
                         </Button>
                 </Column>
             </Row>
-        </Container>
+        </>
     )
 }
