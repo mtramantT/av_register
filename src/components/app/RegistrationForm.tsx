@@ -1,6 +1,5 @@
 import React from "react";
 import { isEmpty, isValidEmail, isValidPhoneNumber } from "../../util/Validations";
-import { Input } from "../form";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
 import { RegistrationFieldAttr } from "../layout/types";
@@ -73,43 +72,44 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         // Empty Validation
         if(isEmpty(firstName.value)) {
             errorMessage.push('First Name');
-            setFirstName(setRequired())
-        };
+            setFirstName(setRequired());
+        }
         if(isEmpty(lastName.value)) {
             errorMessage.push('Last Name');
-            setLastName(setRequired())
-        };
+            setLastName(setRequired());
+        }
         if(isEmpty(npi.value)) {
             errorMessage.push('NPI');
-            setNpi(setRequired())
-        };
+            setNpi(setRequired());
+        }
         if(isEmpty(line1.value)) {
             errorMessage.push('Address line 1');
-            setLine1(setRequired())
-        };
+            setLine1(setRequired());
+        }
         if(isEmpty(line2.value)) {
             errorMessage.push('Address line 2');
             setLine2(setRequired());
+        }
         if(isEmpty(city.value)) {
             errorMessage.push('City');
-            setCity(setRequired())
-        };
+            setCity(setRequired());
+        }
         if(isEmpty(state.value)) {
             errorMessage.push('State');
-            setState(setRequired())
-        };
+            setState(setRequired());
+        }
         if(isEmpty(zip.value)) {
             errorMessage.push('Zip');
-            setZip(setRequired())
-        };
+            setZip(setRequired());
+        }
         if(isEmpty(phone.value)) {
-            errorMessage.push('Phone')
-            setPhone(setRequired())
-        };
+            errorMessage.push('Phone');
+            setPhone(setRequired());
+        }
         if(isEmpty(email.value)) {
             errorMessage.push('Email');
-            setEmail(setRequired())
-        };
+            setEmail(setRequired());
+        }
 
         // Phone Validation
         if(!isValidPhoneNumber(phone.value)) {
@@ -121,7 +121,6 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             setEmail(setRequired());
             errorMessage.push('Please enter a valid email')
         }
-    }
     }
 
     // Default Objects and Properties
