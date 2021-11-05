@@ -10,7 +10,7 @@ export const isValidEmail = (val: string) => {
 }
 
 export const isEmpty = (val?: string) => {
-    return !(!val || val === '');
+    return !val || val === '';
 }
 
 export const allValid = (fields: RegistrationFieldAttr[]) => {
