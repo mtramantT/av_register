@@ -4,10 +4,11 @@ export type ButtonAttr = {
     onClick: () => void;
 }
 export type RegistrationInputAttr = {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {};
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
 }
 export type RegistrationSelectAttr = {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {};
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
 }
