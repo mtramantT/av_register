@@ -26,5 +26,9 @@ const ButtonEle = styled.button<Partial<ButtonStyleProps>>`
 `;
 
 export const Button: React.FC<ButtonProps> = (props: ButtonProps): JSX.Element => {
-    return <ButtonEle {...props} onClick={props.onClick}>{props.children}</ButtonEle>
+    const handleOnClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault();
+        props.onClick();
+    }
+    return <ButtonEle {...props} onClick={handleOnClick}>{props.children}</ButtonEle>
 } 
