@@ -4,25 +4,32 @@ import { mediaDevices, MediaDevices } from "./types";
 
 interface ColumnProps {
     device?: MediaDevices;
-    colSpan?: number | 'auto';
 }
 
-const getWidth = (colSpan: number | 'auto'): number => {
-    if(colSpan === 'auto') return 100; // auto
-    if(colSpan < 1 || colSpan > 12) return 100; // Range
-    if(colSpan % 3 === 0) return (colSpan / 3) * 25; // Modulus 3 rounder
-    return 8.333 * colSpan;
-}
-
-export const Column = styled.div.attrs((props: ColumnProps) => ({
-    className: `col-${props.device ? (props.device === 'auto' ? 'md' : props.device ) : 'md'}`,
-    width: props.colSpan ? `${getWidth(props.colSpan)}%` : `${getWidth('auto')}%`,
-    media: props.device ? mediaDevices[props.device] : mediaDevices['auto'],
-}))`
-    @media ${props => props.media} {
-       width: ${props => props.width};
+const xsmColumn = styled.div.attrs({ className: 'col-xsm'})`
+    @media only screen and (max-width: 600px) {
+        width: 100%;
     }
-    float: left;
-    padding: 15px;
-    width: 100%;
 `;
+const smColumn = styled.div.attrs({ className: 'col-sm'})``;
+const mdColumn = styled.div.attrs({ className: 'col-md'})``;
+const lgColumn = styled.div.attrs({ className: 'col-lg'})``;
+const xlgColumn = styled.div.attrs({ className: 'col-xlg'})``;
+
+export const Column = (props: ColumnProps) => {
+    switch(props.device) {
+        case 'xsm':
+            return xsmColumn;
+        case 'sm':
+            return smColumn;
+        case 'md':
+            return mdColumn;
+        case 'lg':
+            return lgColumn;
+        case 'xlg':
+            return xlgColumn;
+        case 'auto':
+        default:
+            return mdColumn;
+    }    
+}
