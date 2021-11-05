@@ -6,7 +6,20 @@ interface RegistrationFormProps {
 
 }
 
+const handleSubmit = () => {
+
+}
+const handleClear = () => {
+    
+}
+
 export const RegistrationForm: React.FC<RegistrationFormProps> = (props: RegistrationFormProps) => {
+    const submitButtonProps = {
+        onClick: handleSubmit,
+    }
+    const clearButtonProps = {
+        onClick: handleClear,
+    }
     return (
         <Container>
             <Row>
@@ -17,6 +30,12 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             </Row>
             <Row>
                 <Layout.ContactLayout />
+            </Row>
+            <Row>
+                <Layout.ButtonLayout
+                    submitButtonProps={submitButtonProps}
+                    clearButtonProps={clearButtonProps}
+                />
             </Row>
         </Container>
     );
