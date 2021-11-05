@@ -1,5 +1,5 @@
 import React from "react";
-import { getConcatinatedMessage, isEmpty } from '../../util';
+import { getConcatinatedMessage, isEmpty, isValidEmail, isValidNpi, isValidPhoneNumber } from '../../util';
 import { Bannar } from "../form";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
@@ -120,12 +120,33 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             setEmail(setRequired(email))};
         
         if (emptyList.length > 0) {
-            const initialMessage = "The following fields are required:"
-            const newMessage = getConcatinatedMessage(emptyList);
-            setInitialMessage(initialMessage);
-            setMessage(newMessage);
+            setInitialMessage("The following fields are required:");
+            setMessage(getConcatinatedMessage(emptyList));
             setPageStatus('red')
+            return;
         }
+
+        // Validate NPI
+        if (!isValidNpi(npi.value)) {
+            setMessage('Please enter a valid NPI number!')
+            setPageStatus('red');
+            return;
+        }
+        // Validate Phone Number
+        if (!isValidPhoneNumber(phone.value)) {
+            setMessage('Please enter a valid phone number!')
+            setPageStatus('red');
+            return;
+        }
+        // Validate Email Address
+        if (!isValidEmail(email.value)) {
+            setMessage('Please enter a valid email!')
+            setPageStatus('red');
+            return;
+        }
+
+        setMessage('SUCCESS!!');
+        setPageStatus('green');
 
     }
 

@@ -38,9 +38,27 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
                 </Column>
             </Row>
             <Row>
-                <Column></Column>
-                <Column></Column>
-                <Column></Column>
+                <Column colSpan={3}>
+                    <Input 
+                        id="city"
+                        label="City"
+                        onChange={cityFieldAttr.onChange}
+                        value={cityFieldAttr.value}/>
+                </Column>
+                <Column colSpan={1}>
+                    <Input
+                        id="state"
+                        label="State"
+                        onChange={stateFieldAttr.onChange}
+                        value={stateFieldAttr.value}/>
+                </Column>
+                <Column colSpan={3}>
+                    <Input
+                        id="zip"
+                        label="Zip"
+                        onChange={zipfieldAttr.onChange}
+                        value={zipfieldAttr.value}/>
+                </Column>
             </Row>
         </>
     )
