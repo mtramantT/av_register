@@ -41,7 +41,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
         position: absolute;
         transition: 230;
         bottom: ${({ populated }) => populated ? '20px' : '0px'};
-        font-size: ${({ populated }) => populated ? '12px' : '14px'};
+        font-size: ${({ populated }) => populated ? '14px' : '16px'};
     }
 `;
 
