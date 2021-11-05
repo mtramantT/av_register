@@ -1,5 +1,5 @@
 import React from "react";
-import { isEmpty, isValidEmail, isValidPhoneNumber } from "../../util/Validations";
+import { allValid, isEmpty, isValidEmail, isValidPhoneNumber } from "../../util/Validations";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
 import { RegistrationFieldAttr } from "../layout/types";
@@ -120,6 +120,16 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         if(!isValidEmail(email.value)) {
             setEmail(setRequired());
             errorMessage.push('Please enter a valid email')
+        }
+
+        // Set error boundry here (a bannar)
+        let message = '';
+        const fields = [firstName, lastName, npi, line1, line2, city, state, zip, phone, email]
+        if(allValid(fields)) {
+            message = 'The form was submitted!; 
+        }else {
+            message = 'Please resolve all issues:'
+            errorMessage.forEach((msg) => message.concat(' ' + msg))
         }
     }
 

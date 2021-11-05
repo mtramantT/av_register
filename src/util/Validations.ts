@@ -15,5 +15,5 @@ export const isEmpty = (val?: string) => {
 
 export const allValid = (fields: RegistrationFieldAttr[]) => {
     const requiredFields = fields.filter((field) => field.required)
-    return requiredFields.length > 0;
+    return requiredFields.length === 0;
 }
