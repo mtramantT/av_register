@@ -1,5 +1,5 @@
 import React from "react";
-import { isEmpty, isValidEmail, isValidPhoneNumber, someEmpty } from "../../util/Validations";
+import { isEmpty, isValidEmail, isValidPhoneNumber } from "../../util/Validations";
 import { Input } from "../form";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
