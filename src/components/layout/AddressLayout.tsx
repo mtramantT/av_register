@@ -15,7 +15,7 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
     const { line1FieldAttr, line2FieldAttr, cityFieldAttr, stateFieldAttr, zipfieldAttr } = props;
     return (
         <>
-            <h3>Address Info</h3>
+            <h3>Business Address Info</h3>
             <Hr type="dashed" color="#ddd"/>
             <Row>
                 <Column colSpan={10}>
