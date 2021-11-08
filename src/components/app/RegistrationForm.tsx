@@ -3,7 +3,7 @@ import { getConcatinatedMessage, isEmpty, isValidEmail, isValidNpi, isValidPhone
 import { Bannar } from "../form";
 import { Container, Row } from "../grid";
 import * as Layout  from '../layout';
-import { RegistrationFieldAttr } from "../layout/types";
+import { RegistrationFieldAttr, RegistrationSelectFieldAttr } from "../layout/types";
 
 interface RegistrationFormProps {
 
@@ -20,6 +20,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     
     // Handle Methods required for layouts
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('handle input')
         const name = event.target.name;
         const value = event.target.value.trim();
         switch(name) {
@@ -58,7 +59,14 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         }
     }
 
+    const handleSelectInputChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        set_State({ ..._state, value: event.target.value.trim()});
+    }
+
     const setRequired = (field: RegistrationFieldAttr): RegistrationFieldAttr => {
+        return { ...field, required: true }
+    };
+    const setSelectRequired = (field: RegistrationSelectFieldAttr): RegistrationSelectFieldAttr => {
         return { ...field, required: true }
     };
 
@@ -74,7 +82,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         setLine1(defaultRegistrationFieldProps);
         setLine2(defaultRegistrationFieldProps);
         setCity(defaultRegistrationFieldProps);
-        set_State(defaultRegistrationFieldProps);
+        set_State(defaultRegistrationSelectFieldProps);
         setZip(defaultRegistrationFieldProps);
         setPhone(defaultRegistrationFieldProps);
         setEmail(defaultRegistrationFieldProps);
@@ -108,7 +116,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
             setCity(setRequired(city))};
         if(isEmpty(_state.value)) {
             emptyList.push(_state.name)
-            set_State(setRequired(_state))};
+            set_State(setSelectRequired(_state))};
         if(isEmpty(zip.value)) {
             emptyList.push(zip.name)
             setZip(setRequired(zip))};
@@ -157,6 +165,12 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
         required: false,
         name: '',
     }
+    const defaultRegistrationSelectFieldProps = {
+        value: 'AL',
+        onSelect: handleSelectInputChange,
+        required: false,
+        name: '',
+    }
     const submitButtonProps = {
         onClick: handleSubmit,
     }
@@ -172,7 +186,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = (props: Registr
     const [line1, setLine1] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "Line 1", })
     const [line2, setLine2] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "Line 2", })
     const [city, setCity] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "City", })
-    const [_state, set_State] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "State", })
+    const [_state, set_State] = React.useState<RegistrationSelectFieldAttr>({...defaultRegistrationSelectFieldProps, name: "State", })
     const [zip, setZip] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "Zip", })
     const [phone, setPhone] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "Phone", })
     const [email, setEmail] = React.useState<RegistrationFieldAttr>({...defaultRegistrationFieldProps, name: "Email", })

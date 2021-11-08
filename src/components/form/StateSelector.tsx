@@ -7,7 +7,7 @@ interface StateSelectorProps {
     value: string;
     identifier?: StatesKey;
     label?: string;
-    onSelect: () => void;
+    onSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SelectWrapper = styled.div``;
@@ -23,25 +23,22 @@ export const StateSelector: React.FC<StateSelectorProps> = (props: StateSelector
         setIdentifier(identifier);
     }, [props.identifier])
 
-    const mapOptions = React.useMemo(() => {
-        const statesList = states;
-        const ide = identifier;
-        return statesList.map((state) => {
-            return props.value === state[ide]
-                ? <Option selected={true}>{state[ide]}</Option>
-                :<Option>{state[ide]}</Option>
-        })
-    }, [props.value, identifier])
-
     return (
         <SelectWrapper>
             {props.label && <SelectLabel htmlFor={props.id}>{props.label}:</SelectLabel>}
             <SelectBox
                 id={props.id}
                 name={props.id}
-                onSelect={props.onSelect}
+                onChange={props.onSelect}
+                defaultValue="AL"
+                value={props.value}
             >
-                {mapOptions}
+                {states.map((state, index) => {
+                    return <Option 
+                                key={`${state}-${index}`} 
+                                value={state[identifier]} 
+                                label={state[identifier]} />
+                })}
             </SelectBox>
         </SelectWrapper>
     )

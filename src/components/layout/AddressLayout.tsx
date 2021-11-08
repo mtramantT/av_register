@@ -1,29 +1,24 @@
 import React from 'react';
 import { Input, Hr, StateSelector } from '../form';
 import { Column, Row } from '../grid';
-import { RegistrationFieldAttr } from './types';
+import { RegistrationFieldAttr, RegistrationSelectFieldAttr } from './types';
 
 interface AddressLayoutProps {
     line1FieldAttr: RegistrationFieldAttr;
     line2FieldAttr: RegistrationFieldAttr;
     cityFieldAttr: RegistrationFieldAttr;
-    stateFieldAttr: RegistrationFieldAttr;
+    stateFieldAttr: RegistrationSelectFieldAttr;
     zipfieldAttr: RegistrationFieldAttr;
 }
 
-const colSpan = 10
-
 export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayoutProps) => {
     const { line1FieldAttr, line2FieldAttr, cityFieldAttr, stateFieldAttr, zipfieldAttr } = props;
-    const handleSelectChange = () => {
-        stateFieldAttr.onChange({} as React.ChangeEvent<HTMLInputElement>);
-    }
     return (
         <>
             <h3>Address Info</h3>
             <Hr type="dashed" color="#ddd"/>
             <Row>
-                <Column colSpan={colSpan}>
+                <Column colSpan={10}>
                     <Input 
                         id="line1" 
                         label="Line 1" 
@@ -32,7 +27,7 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
                 </Column>
             </Row>
             <Row>
-                <Column colSpan={colSpan}>
+                <Column colSpan={10}>
                     <Input 
                         id="line2" 
                         label="Line 2" 
@@ -53,7 +48,7 @@ export const AddressLayout: React.FC<AddressLayoutProps> = (props: AddressLayout
                         id="state"
                         label="State"
                         value={stateFieldAttr.value}
-                        onSelect={handleSelectChange}
+                        onSelect={stateFieldAttr.onSelect}
                         />
                 </Column>
                 <Column colSpan={3}>
